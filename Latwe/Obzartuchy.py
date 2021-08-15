@@ -13,10 +13,43 @@ testCounter = int(input())
 
 listOfInformations = []
 
-# To poniżej za skomplikowane - olać słowniki itp - tak na prawdę potrzebuję tylko listy czasów gości i przez nią później będę iterował
-# wszystkie pozostałe dane mam już w zmiennych.
+numberOfSecondsInDay = 24*60*60
+
+# Przyjęcie danych i stworzenie listy z informacjami - Pod-lista o inteksie testNum - zawiera wszystkie dane dla jednego testu
 for testNum in range(testCounter):
+    listOfInformations.append([])
     guests, packSize = input().split()
-    for guest in range(int(guests)):
+    guests, packSize = int(guests), int(packSize)
+    listOfInformations[testNum].append({'guests':int(guests),"pack_size":int(packSize)})
+    listOfGuestsTimes = []
+    for guest in range(guests):
+        listOfGuestsTimes.append(input())
+    listOfInformations[testNum].append(listOfGuestsTimes)
+
+# Wykonanie obliczeń dla każdego testu
+for testNum in range(testCounter):
+    informations = listOfInformations[testNum]
+
+    cookiesEaten = 0
+
+    for guest in informations[1]:
+        guestCookies = numberOfSecondsInDay // int(guest)
+        cookiesEaten += guestCookies
+
+
+    if cookiesEaten % informations[0]["pack_size"] == 0:
+        cookiesToBuy = cookiesEaten/informations[0]["pack_size"]
+    else:
+        cookiesToBuy = (cookiesEaten // informations[0]["pack_size"]) + 1
+    print(int(cookiesToBuy))
+
+
+
+
+
+
+
+
+
 
 
