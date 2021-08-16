@@ -1,22 +1,41 @@
-import math
-testCounter = int(input())
+import math, sys
+
+dataInput = []
+lineCounter = 0
+for line in sys.stdin:
+    dataInput.append((line.strip()).split())
+
+
+    lineCounter +=1
+print(dataInput)
 
 
 
-listofData = []
+
+
+
+
+mainData = []
 
 for test in range(testCounter):
-
+    listofData = []
     numberOfPoints = int(input())
     for point in range(numberOfPoints):
         alpha,x,y = input().split()
         listofData.append([alpha,int(x),int(y)])
     print()
+    mainData.append(listofData)
+
+# print(mainData,"main data")
 
 
-for test in range(testCounter):
+result = []
+
+
+for smallList in mainData:
     sortedList = []
-    listofDataCopy = listofData.copy()
+    # print(smallList, "small list")
+    listofDataCopy = smallList.copy()
     while listofDataCopy:
         maxDistance = listofDataCopy[0]
         # print(maxDistance)
@@ -32,18 +51,26 @@ for test in range(testCounter):
         listofDataCopy.remove(maxDistance)
 
 
-for bracket in range(len(sortedList)):
-    for x in range(3):
-        if x != 2:
-            print(sortedList[bracket][x],end=" ")
+
+    result.append(sortedList)
+# print(result,"Result")
+
+
+for dataSet in result:
+    dataSet.reverse()
+    for bracket in range(len(dataSet)):
+        for x in range(3):
+            if x != 2:
+                print(dataSet[bracket][x],end=" ")
+            else:
+                print(dataSet[bracket][x],end="")
+        if bracket != len(dataSet):
+            print()
         else:
-            print(sortedList[bracket][x],end="")
-    if bracket != len(sortedList):
-        print()
-    else:
-        pass
+            pass
+    print()
 
-
+# print(result)
 
 
 
