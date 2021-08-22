@@ -1,15 +1,12 @@
 # Wejście - przyjmujemy liczby - po 1 w linii. r > 0 - wiatraczek lewoskrętny, jeśli r < 0 - to wiatraczek prawoskrętny.
 import math
 
-listOfData = [3,-4]
-
-# number = int(input())
-# while number != 0:
-#     listOfData.append(number)
-#     number = int(input())
-
-
-
+# Przyjęcie danych
+listOfData = []
+number = int(input())
+while number != 0:
+    listOfData.append(number)
+    number = int(input())
 
 for fanNumber in listOfData:
     fanStart = [
@@ -18,7 +15,6 @@ for fanNumber in listOfData:
     ]
 
     for step in range(int(math.fabs(fanNumber))-1):
-        print(step)
         fanStart.append([])
         fanStart.insert(0, [])
         newBracketLen = len(fanStart[step + 1])
@@ -44,19 +40,20 @@ for fanNumber in listOfData:
 
         for iterOne in range((len(fanStart)//2)-1):
             # print(iterOne)
-            fanStart[iterOne+1][0] = "*"
+            fanStart[iterOne+1][0] = char1
+            fanStart[-(iterOne+1)-1][0] = char2
+
+            fanStart[0][-(iterOne+1)-1] = char1
+            fanStart[0][iterOne+1] = char2
+
+            fanStart[-(iterOne+1)-1][-1] = char1
+            fanStart[iterOne+1][-1] = char2
+
+            fanStart[-1][iterOne+1] = char1
+            fanStart[-1][(-iterOne-1)-1] = char2
 
 
-
-
-
-        # for element in fanStart:
-        #     print(element)
-
-
-
-
-
+# Wyświetlenie wyniku
     for element in fanStart:
         for char in element:
             print(char,end="")
