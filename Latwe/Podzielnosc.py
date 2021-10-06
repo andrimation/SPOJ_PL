@@ -1,4 +1,4 @@
-testCounter = int(input())
+testCounter = int(input()) 
 
 for test in range(testCounter):
     n, x, y = map(int,(input().split()))
